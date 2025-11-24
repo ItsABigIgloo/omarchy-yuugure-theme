@@ -1,0 +1,60 @@
+@define-color background #101020;
+@define-color foreground #cdd6f4;
+
+@define-color accent_orange #ffa502;
+@define-color accent_green #7bed9f;
+@define-color accent_blue #3a3a3a;
+@define-color accent_critical #ff5555;
+
+
+#network.disconnected{
+  color: @accent_critical;
+}
+#pulseaudio.muted{
+  color: @accent_critical;
+}
+/* -----------------------------------------------------
+   Battery States
+   ----------------------------------------------------- */
+
+/* 1. Charging (Active charging) */
+#battery.charging {
+    color: @accent_green;
+}
+
+/* 2. Plugged (Not charging, usually meaning 'maintenance mode' or 'threshold limit') */
+#battery.plugged {
+    color: @accent_green;
+}
+
+/* 3. Full (100% charged and plugged in)*/
+#battery.full {
+    color: @accent_green;
+}
+
+/* 4. Warning (Low Battery) - Only when NOT charging */
+#battery.warning:not(.charging) {
+    color: @accent_orange;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* 5. Critical (Very Low Battery) - Only when NOT charging */
+#battery.critical:not(.charging) {
+    color: @accent_critical;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Optional: Define the blink animation if you haven't yet */
+@keyframes blink {
+    to {
+        color: #ffffff; /* Flash white */
+    }
+}
